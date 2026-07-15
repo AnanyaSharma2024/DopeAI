@@ -9,3 +9,54 @@ SHARED FOLDER WILL BE ABLE TO HANDLE ALL THE SERVICES FOR REDIS
 GATEWAY KE MODELS M USER MODELS M PASSWORD NHI RHKA H KYUKI GOOGLE SE LOGIN KRWAYENGE 
 
 USER CONTIUNE WITH GOOGLE PAY PR CLICK KRKE BACKEND PR AYEGA THEN VERIFY KARENGE USER KO 
+
+FIRE-BASE WORKFLOW
+User
+   │
+   ▼
+Frontend (React)
+   │
+   │ Click "Continue with Google"
+   ▼
+Firebase Authentication
+   │
+   │ Google Login Popup
+   ▼
+Google
+   │
+   │ User login successful
+   ▼
+Firebase
+   │
+   │ Returns ID Token + User Info
+   ▼
+Frontend
+   │
+   │ Sends token to Backend
+   ▼
+Node.js Backend
+   │
+   │ Verify token
+   ▼
+MongoDB
+   │
+   │ Create/Login User
+   ▼
+JWT
+   │
+   ▼
+Frontend Logged In
+
+AXIOS
+
+Axios is a promise-based HTTP client for JavaScript used to send HTTP requests (GET, POST, PUT, DELETE, etc.) from the frontend or backend to APIs. It automatically handles JSON data, supports request/response interceptors, custom headers, timeouts, and better error handling than the native Fetch API.
+
+Real example in your project
+
+Jab user "Continue with Google" click karega:
+
+Firebase Google login complete karega.
+Frontend ko Google/Firebase token milega.
+Axios us token ko Gateway/Auth Service ko bhejega.
+Backend token verify karega, MongoDB me user create/login karega, aur JWT return karega.
+Axios response receive karke user ko logged-in state me le aayega.
