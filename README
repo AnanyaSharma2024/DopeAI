@@ -60,3 +60,10 @@ Frontend ko Google/Firebase token milega.
 Axios us token ko Gateway/Auth Service ko bhejega.
 Backend token verify karega, MongoDB me user create/login karega, aur JWT return karega.
 Axios response receive karke user ko logged-in state me le aayega.
+
+REDUX
+Iska purpose hai user ki information ko poori application me globally store karna, taaki har component ko baar-baar API call na karni pade.
+Har jagah office jaake ID banwane ki zarurat nahi padti.
+Pocket (Redux Store) se ID nikal kar dikha dete ho.
+Redux ka kaam bhi exactly yehi hai: ek baar user data store karo, phir poori app me use karo.
+

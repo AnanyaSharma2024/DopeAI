@@ -2,14 +2,17 @@ import { signInWithPopup } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import { auth, googleProvider } from "../../utils/firebase"
 import api from "../../utils/axios"
+import { useDispatch, useSelector } from "react-redux";
+import { setUserdata } from "../redux/userSlice";
 
 function Home() {
-
+  const { userData } = useSelector(state => state.user)
+  const dispatch = useDispatch();
+  console.log("Redux userData:", userData);
   const handleLogin = async (token) => {
     try {
       const { data } = await api.post("/api/auth/login", { token });
-
-      console.log(data);
+      dispatch(setUserdata(data));
 
     } catch (error) {
       console.log(error);
@@ -26,21 +29,25 @@ function Home() {
 
   return (
   <div className="h-screen flex items-center justify-center bg-[#0d0f14]">
-    <div className="bg-[#1a1d24] p-8 rounded-2xl shadow-2xl flex flex-col items-center gap-6 w-[380px]">
-      <h1 className="text-3xl font-bold text-white">Welcome to DopeAI</h1>
+    {!userData && (
+      <div className="bg-[#1a1d24] p-8 rounded-2xl shadow-2xl flex flex-col items-center gap-6 w-[380px]">
+        <h1 className="text-3xl font-bold text-white">
+          Welcome to DopeAI
+        </h1>
 
-      <p className="text-gray-400 text-center">
-        Sign in to continue
-      </p>
+        <p className="text-gray-400 text-center">
+          Sign in to continue
+        </p>
 
-      <button
-  onClick={googleLogin}
-  className="w-full flex items-center justify-center gap-3 py-3 bg-white text-black rounded-xl font-semibold hover:bg-gray-200 transition duration-200 cursor-pointer"
->
-  <FcGoogle size={22} />
-  Continue with Google
-</button>
-    </div>
+        <button
+          onClick={googleLogin}
+          className="w-full flex items-center justify-center gap-3 py-3 bg-white text-black rounded-xl font-semibold hover:bg-gray-200 transition duration-200 cursor-pointer"
+        >
+          <FcGoogle size={22} />
+          Continue with Google
+        </button>
+      </div>
+    )}
   </div>
 );
 }
