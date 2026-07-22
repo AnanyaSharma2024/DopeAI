@@ -67,3 +67,39 @@ Har jagah office jaake ID banwane ki zarurat nahi padti.
 Pocket (Redux Store) se ID nikal kar dikha dete ho.
 Redux ka kaam bhi exactly yehi hai: ek baar user data store karo, phir poori app me use karo.
 
+AGENT 
+User frontend se prompt bhejega (e.g., "Make me a PPT on Docker").
+Request API Gateway par aayegi.
+Gateway request ko Agent Service ke paas forward karega.
+Agent Service me LangGraph start hoga.
+LangGraph ka Router Agent sabse pehle user ka prompt analyze karega.
+Router decide karega ki kis specialized agent ko request bhejni hai.
+Selected agent apna kaam complete karega.
+Final response Agent Service → Gateway → Frontend return ho jayega.
+
+FLOW 
+START
+   │
+   ▼
+Router Agent
+   │
+   ├────────► Chat Agent
+   │
+   ├────────► Web Search Agent
+   │
+   ├────────► Coding Agent
+   │
+   ├────────► PDF Agent
+   │
+   ├────────► PPT Agent
+   │
+   └────────► Image Agent
+            │
+            ▼
+        Final Response
+            │
+            ▼
+            END
+API Gateway receives the user's request and forwards it to the Agent Service.
+Inside the Agent Service, a LangGraph Router Agent acts as the brain of the system. It analyzes the user's prompt, determines the user's intent, and routes the request to the most suitable specialized agent. The Chat Agent handles general conversations using an LLM, the Web Search Agent retrieves real-time information from the internet, the Coding Agent generates and debugs code while providing previews, the PDF Agent creates PDF documents, the PPT Agent generates presentations, and the Image Agent creates AI-generated images. After the selected agent completes its task, the response is returned through the Agent Service and API Gateway back to the frontend. This modular architecture makes the platform scalable, allowing new agents to be added without changing the overall workflow.
+
