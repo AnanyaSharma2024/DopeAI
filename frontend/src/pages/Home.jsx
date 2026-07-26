@@ -4,6 +4,9 @@ import { auth, googleProvider } from "../../utils/firebase"
 import api from "../../utils/axios"
 import { useDispatch, useSelector } from "react-redux";
 import { setUserdata } from "../redux/userSlice";
+import SideBar from "../components/SideBar";
+import ChatArea from "../components/ChatArea";
+import Artifact from "../components/Artifact";
 
 function Home() {
   const { userData } = useSelector(state => state.user)
@@ -29,6 +32,15 @@ function Home() {
 
   return (
   <div className="h-screen flex items-center justify-center bg-[#0d0f14]">
+<SideBar/>
+<ChatArea/>
+<Artifact/>
+
+
+
+
+
+    
     {!userData && (
       <div className="bg-[#1a1d24] p-8 rounded-2xl shadow-2xl flex flex-col items-center gap-6 w-[380px]">
         <h1 className="text-3xl font-bold text-white">
